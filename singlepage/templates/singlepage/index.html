@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Single Page</title>
-        <script>
+<script>
 
             //  This function communicates with django (backend)
 
-            function showSection(section) {
-                fetch(`/sections/${section}`)
+            async function showSection(section) {
+                await fetch(`/sections/${section}`)
                 .then(response => response.text())
                 .then(text => {
-                    console.log(text);
                     document.querySelector('#content').innerHTML = text;
+                    console.log('this comes before');
                 });
+                console.log('this comes after');
+
+
 
             }
 
@@ -27,6 +26,10 @@
 
 
         </script>
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Single Page</title>
     </head>
     <body>
         <h1>The post comments demo</h1>
