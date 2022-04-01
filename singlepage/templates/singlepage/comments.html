@@ -1,0 +1,11 @@
+<li> {{node.CommentDescription}}
+    {%if node.children_comments %}
+        <ul>
+         {%for ch in node.children_comments %}
+              {%with node=ch template_name="singlepage/comments.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>

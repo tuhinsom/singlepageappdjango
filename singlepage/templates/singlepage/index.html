@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Single Page</title>
+        <script>
+
+            //  This function communicates with django (backend)
+
+            function showSection(section) {
+                fetch(`/sections/${section}`)
+                .then(response => response.text())
+                .then(text => {
+                    console.log(text);
+                    document.querySelector('#content').innerHTML = text;
+                });
+
+            }
+
+
+            document.addEventListener("DOMContentLoaded", function() {
+                document.querySelectorAll('button').forEach(button => {
+                    button.onclick = function() {
+                        showSection(this.dataset.section)
+                    }
+                })
+            });
+
+
+        </script>
+    </head>
+    <body>
+        <h1>The post comments demo</h1>
+        <button data-section="1">Post 1</button>
+        <button data-section="2">Post 2</button>
+        <button data-section="3">Post 3</button>
+
+        <!-- Contents loaded from server is inserted here by javascript -->
+        <div id="content">
+
+        </div>
+
+    </body>
+</html>
